@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Deploys Portworx Enterprise into an existing Kubernetes Cluster (qs-1p7nkdm7b)
+Parameters:
+  KubeManifestLambdaArn:
+    Type: String
+  KubeConfigPath:
+    Type: String
+  KubeConfigKmsContext:
+    Type: String
+    Default: "EKSQuickStart"
+  KubeClusterName:
+    Type: String
+  NodeGroupIAMRole:
+    Type: String
+Resources:
+  ## Portworx resources go here
+  DummyResource:
+    Type: "Custom::KubeManifest"
+    Version: '1.0'
+    Properties:
+      ServiceToken: !Ref KubeManifestLambdaArn
+      KubeConfigPath: !Ref KubeConfigPath
+      KubeConfigKmsContext: !Ref KubeConfigKmsContext
+      Manifest:
+        apiVersion: v1
+        kind: ConfigMap
+        metadata:
+          namespace: kube-system
+        data:
+          DummyData: "erp"

@@ -1,1 +1,1 @@
-# quickstart-portworx-eks-mssql
+# quickstart-portworx
