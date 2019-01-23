@@ -31,6 +31,13 @@ Metadata:
       Parameters:
       - QSS3BucketName
       - QSS3KeyPrefix
+    - Label:
+        default: Portworx Configuration
+      Parameters:
+      - KubernetesEKSVersion
+      - PortworxVersion
+      - LightHouseVersion
+      - VolumeTemplateString
     ParameterLabels:
       KeyPairName:
         default: SSH Key Name
@@ -62,6 +69,14 @@ Metadata:
         default: Node Group Name
       NodeVolumeSize:
         default: Node Volume Size
+      KubernetesEKSVersion:
+        default: The EKS version used scheduler container image tags
+      PortworxVersion:
+        default: Version of portworx X.Y.Z
+      LightHouseVersion:
+        default: Version of Lighthouse X.Y.Z
+      VolumeTemplateString:
+        default: The template string (https://docs.portworx.com/cloud-references/auto-disk-provisioning/aws/)
 Parameters:
   AvailabilityZones:
     Description: List of Availability Zones to use for the subnets in the VPC. Three
@@ -116,7 +131,7 @@ Parameters:
     ConstraintDescription: Quick Start bucket name can include numbers, lowercase
       letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen
       (-).
-    Default: aws-quickstart
+    Default: quickstart-eks-portworx
     Description: S3 bucket name for the Quick Start assets. This string can include
       numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start
       or end with a hyphen (-).
@@ -253,6 +268,18 @@ Parameters:
     Type: String
     AllowedValues: [ "1.11", "1.10" ]
     Default: "1.11"
+  KubernetesEKSVersion:
+    Type: String
+    Default: "v1.11.0"
+  PortworxVersion:
+    Type: String
+    Default: "2.0.1"
+  LightHouseVersion:
+    Type: String
+    Default: "2.0.1"
+  VolumeTemplateString:
+    Type: String
+    Default: "type=gp2,size=100"
 Resources:
   VPCStack:
     Type: AWS::CloudFormation::Stack
@@ -296,15 +323,22 @@ Resources:
         VPCID: !GetAtt VPCStack.Outputs.VPCID
         KubernetesVersion: !Ref KubernetesVersion
   PortworxStack:
+    DependsOn: EKSStack
     Type: AWS::CloudFormation::Stack
     Properties:
       TemplateURL: !Sub 'https://${QSS3BucketName}.s3.amazonaws.com/${QSS3KeyPrefix}templates/portworx.template.yaml'
       Parameters:
-        KubeManifestLambdaArn: !GetAtt EKSStack.Outputs.KubeManifestLambdaArn
         KubeConfigPath: !GetAtt EKSStack.Outputs.KubeConfigPath
         KubeConfigKmsContext: "EKSQuickStart"
-        KubeClusterName: !GetAtt EKSStack.Outputs.EKSClusterName
+        KubeManifestLambdaArn: !GetAtt EKSStack.Outputs.KubeManifestLambdaArn
+        PortworxClusterName: !Join [ "-", [ !GetAtt EKSStack.Outputs.EKSClusterName, "portworx-cluster" ] ]
+        QSS3BucketName: !Ref QSS3BucketName
+        QSS3KeyPrefix: !Ref QSS3KeyPrefix
         NodeGroupIAMRole: !GetAtt EKSStack.Outputs.NodeGroupIAMRole
+        KubernetesEKSVersion: !Ref KubernetesEKSVersion
+        PortworxVersion: !Ref PortworxVersion
+        LightHouseVersion: !Ref LightHouseVersion
+        VolumeTemplateString: !Ref VolumeTemplateString
 Outputs:
   KubeConfigPath:
     Value: !GetAtt EKSStack.Outputs.KubeConfigPath
