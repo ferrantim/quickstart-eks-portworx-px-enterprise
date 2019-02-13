@@ -336,7 +336,7 @@ Resources:
         KubeConfigKmsContext: "EKSQuickStart"
         KubeManifestLambdaArn: !GetAtt EKSStack.Outputs.KubeManifestLambdaArn
         PortworxClusterName: !Join [ "-", [ !GetAtt EKSStack.Outputs.EKSClusterName, "portworx-cluster" ] ]
-        NodeGroupIAMRole: !GetAtt EKSStack.Outputs.NodeGroupIAMRole
+        NodeGroupIAMRole: !GetAtt EKSStack.Outputs.NodeInstanceRoleName
         KubernetesEKSVersion: !Ref KubernetesEKSVersion
         PortworxVersion: !Ref PortworxVersion
         LightHouseVersion: !Ref LightHouseVersion
