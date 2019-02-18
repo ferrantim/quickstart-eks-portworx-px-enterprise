@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: Deploys Portworx Enterprise into a new EKS cluster in a new VPC (qs-1p7nkdm72)
+Description: Deploys Portworx Enterprise into a new EKS cluster in a new VPC (qs-1pb1dqsjr)
 Metadata:
   AWS::CloudFormation::Interface:
     ParameterGroups:

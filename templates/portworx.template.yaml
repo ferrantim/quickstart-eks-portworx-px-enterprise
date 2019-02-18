@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: Deploys Portworx Enterprise into an existing Kubernetes Cluster (qs-1p7nkdm7b)
+Description: Deploys Portworx Enterprise into an existing Kubernetes Cluster (qs-1pb1dqsjr)
 Metadata:
   AWS::CloudFormation::Interface:
     ParameterGroups:
