@@ -262,7 +262,7 @@ Parameters:
     Description: The size for the node's root EBS volumes.
     Type: String
   LambdaZipsBucketName:
-    Description: [OPTIONAL] The name of the bucket  where the Lambda .zip files should be placed;
+    Description: '[OPTIONAL] The name of the bucket  where the Lambda .zip files should be placed;
         if left blank, a bucket will be created.'
     Type: String
     Default: ''
@@ -273,7 +273,7 @@ Parameters:
   PXKubernetesVersion:
     Type: String
     Default: "v1.11.0"
-    Description:  The tag for the Portworx container image version
+    Description:  The tag for the Portworx container image version.
   PortworxVersion:
     Type: String
     Default: "2.0.1"
