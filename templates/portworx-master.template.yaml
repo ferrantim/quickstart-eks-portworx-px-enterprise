@@ -26,6 +26,8 @@ Metadata:
       - NumberOfNodes
       - NodeGroupName
       - NodeVolumeSize
+      - AdditionalEKSAdminArns
+      - KubernetesVersion
     - Label:
         default: Portworx configuration
       Parameters:

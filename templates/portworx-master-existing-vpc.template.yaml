@@ -7,6 +7,11 @@ Metadata:
         default: Network configuration
       Parameters:
       - RemoteAccessCIDR
+      - PublicSubnet1ID
+      - PublicSubnet2ID
+      - PrivateSubnet1ID
+      - PrivateSubnet2ID
+      - PrivateSubnet3ID
     - Label:
         default: Amazon EC2 configuration
       Parameters:
@@ -18,6 +23,8 @@ Metadata:
       - NumberOfNodes
       - NodeGroupName
       - NodeVolumeSize
+      - AdditionalEKSAdminArns
+      - KubernetesVersion
     - Label:
         default: Portworx configuration
       Parameters:
