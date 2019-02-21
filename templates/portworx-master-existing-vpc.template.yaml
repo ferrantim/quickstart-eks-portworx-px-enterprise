@@ -12,6 +12,7 @@ Metadata:
       - PrivateSubnet1ID
       - PrivateSubnet2ID
       - PrivateSubnet3ID
+      - VPCID
     - Label:
         default: Amazon EC2 configuration
       Parameters:
