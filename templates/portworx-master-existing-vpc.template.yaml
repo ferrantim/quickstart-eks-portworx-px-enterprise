@@ -55,6 +55,20 @@ Metadata:
         default: Node group name
       NodeVolumeSize:
         default: Node volume size
+      PublicSubnet1ID:
+        default: Public Subnet 1 ID
+      PublicSubnet2ID:
+        default: Public Subnet 2 ID
+      PrivateSubnet1ID:
+        default: Private Subnet 1 ID
+      PrivateSubnet2ID:
+        default: Private Subnet 2 ID
+      PrivateSubnet3ID:
+        default: Private Subnet 3 ID
+      AdditionalEKSAdminArns:
+        default: Additional EKS admin ARNs
+      KubernetesVersion:
+        default: Kubernetes version
       PXKubernetesVersion:
         default: Portworx version tag
       PortworxVersion:
@@ -200,16 +214,22 @@ if left blank, a bucket will be created.'
     Type: String
     Default: ''
   VPCID:
+    Description: ID of the VPC (e.g., vpc-0343606e)
     Type: "AWS::EC2::VPC::Id"
   PublicSubnet1ID:
+    Description: ID of the public subnet 1 in Availability Zone 1 (e.g., subnet-a0246dcd)
     Type: "AWS::EC2::Subnet::Id"
   PublicSubnet2ID:
+    Description: ID of the public subnet 2 in Availability Zone 1 (e.g., subnet-a0246dcd)
     Type: "AWS::EC2::Subnet::Id"
   PrivateSubnet1ID:
+    Description: ID of the private subnet 1 in Availability Zone 1 (e.g., subnet-a0246dcd)
     Type: "AWS::EC2::Subnet::Id"
   PrivateSubnet2ID:
+    Description: ID of the private subnet 2 in Availability Zone 1 (e.g., subnet-a0246dcd)
     Type: "AWS::EC2::Subnet::Id"
   PrivateSubnet3ID:
+    Description: ID of the private subnet 3 in Availability Zone 1 (e.g., subnet-a0246dcd)
     Type: "AWS::EC2::Subnet::Id"
   KubernetesVersion:
     Type: String

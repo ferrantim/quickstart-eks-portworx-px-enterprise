@@ -63,6 +63,10 @@ Metadata:
         default: Quick Start S3 key prefix
       RemoteAccessCIDR:
         default: Allowed external access CIDR
+      AdditionalEKSAdminArns:
+        default: Additional EKS admin ARNs
+      KubernetesVersion:
+        default: Kubernetes version
       VPCCIDR:
         default: VPC CIDR
       NodeInstanceType:
