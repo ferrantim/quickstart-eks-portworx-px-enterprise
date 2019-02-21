@@ -273,6 +273,7 @@ Parameters:
     Type: String
     Default: ''
   KubernetesVersion:
+    Description: Kubernetes Verison of EKS Cluster
     Type: String
     AllowedValues: [ "1.11", "1.10" ]
     Default: "1.11"

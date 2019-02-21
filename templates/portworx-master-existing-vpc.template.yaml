@@ -77,6 +77,8 @@ Metadata:
         default: Version of Lighthouse X.Y.Z
       VolumeTemplateString:
         default: Template string for partitioning
+      VPCID:
+        default: VPC ID
 Parameters:
   KeyPairName:
     Description: The name of an existing public/private key pair, which allows you
@@ -232,6 +234,7 @@ if left blank, a bucket will be created.'
     Description: ID of the private subnet 3 in Availability Zone 1 (e.g., subnet-a0246dcd)
     Type: "AWS::EC2::Subnet::Id"
   KubernetesVersion:
+    Description: Kubernetes Verison of EKS Cluster
     Type: String
     AllowedValues: [ "1.11", "1.10" ]
     Default: "1.11"
