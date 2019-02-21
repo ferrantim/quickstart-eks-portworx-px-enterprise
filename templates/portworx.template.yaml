@@ -6,12 +6,12 @@ Metadata:
     - Label:
         default: Portworx Configuration
       Parameters:
-      - KubernetesEKSVersion
+      - PXKubernetesVersion
       - PortworxVersion
       - LightHouseVersion
       - VolumeTemplateString
     ParameterLabels:
-      KubernetesEKSVersion:
+      PXKubernetesVersion:
         default: The EKS version used scheduler container image tags
       PortworxVersion:
         default: Version of portworx X.Y.Z
@@ -33,7 +33,7 @@ Parameters:
   NodeGroupIAMRole:
     Type: String
     Description: The IAM NodeGroup Role for the Portworx Nodes (EKS Worker Nodes)
-  KubernetesEKSVersion:
+  PXKubernetesVersion:
     Type: String
     Default: "v1.11.0"
     Description:  The EKS version used scheduler container image tags
@@ -759,7 +759,7 @@ Resources:
       # context for KMS to use when decrypting the file
       KubeConfigKmsContext: !Ref KubeConfigKmsContext
       # k8s version
-      KubernetesEKSVersion: !Ref KubernetesEKSVersion
+      PXKubernetesVersion: !Ref PXKubernetesVersion
       # Kubernetes manifest
       Manifest:
         apiVersion: apps/v1beta1
@@ -789,7 +789,7 @@ Resources:
                 - --policy-configmap=stork-config
                 - --policy-configmap-namespace=kube-system
                 - --lock-object-name=stork-scheduler
-                image: !Join [ ":", [ "gcr.io/google_containers/kube-scheduler-amd64", !Ref KubernetesEKSVersion ] ]
+                image: !Join [ ":", [ "gcr.io/google_containers/kube-scheduler-amd64", !Ref PXKubernetesVersion ] ]
                 livenessProbe:
                   httpGet:
                     path: /healthz
@@ -1002,7 +1002,7 @@ Resources:
       # context for KMS to use when decrypting the file
       KubeConfigKmsContext: !Ref KubeConfigKmsContext
       # k8s version
-      KubernetesEKSVersion: !Ref KubernetesEKSVersion
+      PXKubernetesVersion: !Ref PXKubernetesVersion
       # Kubernetes manifest
       Manifest:
         apiVersion: extensions/v1beta1
@@ -1037,7 +1037,7 @@ Resources:
                 - --controllers=persistentvolume-binder,persistentvolume-expander
                 - --use-service-account-credentials=true
                 - --leader-elect-resource-lock=configmaps
-                image: !Join [ ":", [ "gcr.io/google_containers/kube-controller-manager-amd64", !Ref KubernetesEKSVersion] ]
+                image: !Join [ ":", [ "gcr.io/google_containers/kube-controller-manager-amd64", !Ref PXKubernetesVersion] ]
                 livenessProbe:
                   failureThreshold: 8
                   httpGet:

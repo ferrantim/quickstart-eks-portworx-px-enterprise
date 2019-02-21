@@ -34,7 +34,7 @@ Metadata:
     - Label:
         default: Portworx Configuration
       Parameters:
-      - KubernetesEKSVersion
+      - PXKubernetesVersion
       - PortworxVersion
       - LightHouseVersion
       - VolumeTemplateString
@@ -69,7 +69,7 @@ Metadata:
         default: Node Group Name
       NodeVolumeSize:
         default: Node Volume Size
-      KubernetesEKSVersion:
+      PXKubernetesVersion:
         default: The EKS version used scheduler container image tags
       PortworxVersion:
         default: Version of portworx X.Y.Z
@@ -268,7 +268,7 @@ Parameters:
     Type: String
     AllowedValues: [ "1.11", "1.10" ]
     Default: "1.11"
-  KubernetesEKSVersion:
+  PXKubernetesVersion:
     Type: String
     Default: "v1.11.0"
     Description:  The EKS version used scheduler container image tags
@@ -337,7 +337,7 @@ Resources:
         KubeManifestLambdaArn: !GetAtt EKSStack.Outputs.KubeManifestLambdaArn
         PortworxClusterName: !Join [ "-", [ !GetAtt EKSStack.Outputs.EKSClusterName, "portworx-cluster" ] ]
         NodeGroupIAMRole: !GetAtt EKSStack.Outputs.NodeInstanceRoleName
-        KubernetesEKSVersion: !Ref KubernetesEKSVersion
+        PXKubernetesVersion: !Ref PXKubernetesVersion
         PortworxVersion: !Ref PortworxVersion
         LightHouseVersion: !Ref LightHouseVersion
         VolumeTemplateString: !Ref VolumeTemplateString
