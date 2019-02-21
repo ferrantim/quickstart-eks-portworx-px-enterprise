@@ -253,7 +253,7 @@ Parameters:
     - z1d.6xlarge
     - z1d.12xlarge
     ConstraintDescription: Must be a valid EC2 instance type
-    Description: The type of EC2 instance for the node instances
+    Description: The type of EC2 instance for the node instances.
     Type: String
   NumberOfNodes:
     Default: 3
@@ -273,7 +273,7 @@ Parameters:
     Type: String
     Default: ''
   KubernetesVersion:
-    Description: Kubernetes Verison of EKS Cluster
+    Description: The Kubernetes version of the Amazon EKS cluster.
     Type: String
     AllowedValues: [ "1.11", "1.10" ]
     Default: "1.11"
