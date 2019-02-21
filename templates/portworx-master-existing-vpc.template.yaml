@@ -222,16 +222,16 @@ if left blank, a bucket will be created.'
     Description: The ID of the public subnet 1 in Availability Zone 1 (e.g., subnet-a0246dcd).
     Type: "AWS::EC2::Subnet::Id"
   PublicSubnet2ID:
-    Description: The ID of the public subnet 2 in Availability Zone 1 (e.g., subnet-a0246dcd).
+    Description: The ID of the public subnet 2 in Availability Zone 2 (e.g., subnet-a0246dcd).
     Type: "AWS::EC2::Subnet::Id"
   PrivateSubnet1ID:
     Description: The ID of the private subnet 1 in Availability Zone 1 (e.g., subnet-a0246dcd).
     Type: "AWS::EC2::Subnet::Id"
   PrivateSubnet2ID:
-    Description: The ID of the private subnet 2 in Availability Zone 1 (e.g., subnet-a0246dcd).
+    Description: The ID of the private subnet 2 in Availability Zone 2 (e.g., subnet-a0246dcd).
     Type: "AWS::EC2::Subnet::Id"
   PrivateSubnet3ID:
-    Description: The ID of the private subnet 3 in Availability Zone 1 (e.g., subnet-a0246dcd).
+    Description: The ID of the private subnet 3 in Availability Zone 3 (e.g., subnet-a0246dcd).
     Type: "AWS::EC2::Subnet::Id"
   KubernetesVersion:
     Description: The Kubernetes version  of the Amazon EKS cluster.
