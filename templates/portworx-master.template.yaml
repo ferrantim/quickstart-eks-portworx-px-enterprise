@@ -4,7 +4,7 @@ Metadata:
   AWS::CloudFormation::Interface:
     ParameterGroups:
     - Label:
-        default: Network Configuration
+        default: Network configuration
       Parameters:
       - AvailabilityZones
       - VPCCIDR
@@ -16,115 +16,117 @@ Metadata:
       - PublicSubnet3CIDR
       - RemoteAccessCIDR
     - Label:
-        default: Amazon EC2 Configuration
+        default: Amazon EC2 configuration
       Parameters:
       - KeyPairName
     - Label:
-        default: EKS Configuration
+        default: Amazon EKS configuration
       Parameters:
       - NodeInstanceType
       - NumberOfNodes
       - NodeGroupName
       - NodeVolumeSize
     - Label:
-        default: AWS Quick Start Configuration
-      Parameters:
-      - QSS3BucketName
-      - QSS3KeyPrefix
-    - Label:
-        default: Portworx Configuration
+        default: Portworx configuration
       Parameters:
       - PXKubernetesVersion
       - PortworxVersion
       - LightHouseVersion
       - VolumeTemplateString
+    - Label:
+        default: AWS Quick Start configuration
+      Parameters:
+      - QSS3BucketName
+      - QSS3KeyPrefix
     ParameterLabels:
+      AvailabilityZones:
+        default: Availability Zones
       KeyPairName:
-        default: SSH Key Name
+        default: SSH key name
       PrivateSubnet1CIDR:
-        default: Private Subnet 1 CIDR
+        default: Private subnet 1 CIDR
       PrivateSubnet2CIDR:
-        default: Private Subnet 2 CIDR
+        default: Private subnet 2 CIDR
       PrivateSubnet3CIDR:
-        default: Private Subnet 3 CIDR
+        default: Private subnet 3 CIDR
       PublicSubnet1CIDR:
-        default: Public Subnet 1 CIDR
+        default: Public subnet 1 CIDR
       PublicSubnet2CIDR:
-        default: Public Subnet 2 CIDR
+        default: Public subnet 2 CIDR
       PublicSubnet3CIDR:
-        default: Public Subnet 3 CIDR
+        default: Public subnet 3 CIDR
       QSS3BucketName:
-        default: Quick Start S3 Bucket Name
+        default: Quick Start S3 bucket name
       QSS3KeyPrefix:
-        default: Quick Start S3 Key Prefix
+        default: Quick Start S3 key prefix
       RemoteAccessCIDR:
-        default: Allowed External Access CIDR
+        default: Allowed external access CIDR
       VPCCIDR:
         default: VPC CIDR
       NodeInstanceType:
-        default: Nodes Instance Type
+        default: Nodes instance type
       NumberOfNodes:
-        default: Number of Nodes
+        default: Number of nodes
       NodeGroupName:
-        default: Node Group Name
+        default: Node group name
       NodeVolumeSize:
-        default: Node Volume Size
+        default: Node volume size
       PXKubernetesVersion:
-        default: The EKS version used scheduler container image tags
+        default: Portworx version tag
       PortworxVersion:
-        default: Version of portworx X.Y.Z
+        default: Version of Portworx X.Y.Z
       LightHouseVersion:
         default: Version of Lighthouse X.Y.Z
       VolumeTemplateString:
-        default: The template string (https://docs.portworx.com/cloud-references/auto-disk-provisioning/aws/)
+        default: Template string for partitioning
 Parameters:
   AvailabilityZones:
-    Description: List of Availability Zones to use for the subnets in the VPC. Three
+    Description: The list of Availability Zones to use for the subnets in the VPC. Three
       Availability Zones are used for this deployment, and the logical order of your
       selections is preserved.
     Type: List<AWS::EC2::AvailabilityZone::Name>
   KeyPairName:
     Description: The name of an existing public/private key pair, which allows you
-      to securely connect to your instance after it launches
+      to securely connect to your instance after it launches.
     Type: AWS::EC2::KeyPair::KeyName
   PrivateSubnet1CIDR:
     AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
     Default: 10.0.0.0/19
-    Description: CIDR block for private subnet 1 located in Availability Zone 1
+    Description: The CIDR block for the private subnet 1 located in Availability Zone 1.
     Type: String
   PrivateSubnet2CIDR:
     AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
     Default: 10.0.32.0/19
-    Description: CIDR block for private subnet 2 located in Availability Zone 2
+    Description: The CIDR block for the private subnet 2 located in Availability Zone 2.
     Type: String
   PrivateSubnet3CIDR:
     AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
     Default: 10.0.64.0/19
-    Description: CIDR block for private subnet 2 located in Availability Zone 3
+    Description: The CIDR block for the private subnet 3 located in Availability Zone 3.
     Type: String
   PublicSubnet1CIDR:
     AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
     Default: 10.0.128.0/20
-    Description: CIDR block for the public (DMZ) subnet 1 located in Availability
-      Zone 1
+    Description: The CIDR block for the public (DMZ) subnet 1 located in Availability
+      Zone 1.
     Type: String
   PublicSubnet2CIDR:
     AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
-    ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
+    ConstraintDescription: The CIDR block parameter must be in the form x.x.x.x/16-28
     Default: 10.0.144.0/20
-    Description: CIDR block for the public (DMZ) subnet 2 located in Availability
-      Zone 2
+    Description: The CIDR block for the public (DMZ) subnet 2 located in Availability
+      Zone 2.
     Type: String
   PublicSubnet3CIDR:
     AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
     Default: 10.0.160.0/20
-    Description: CIDR block for the public (DMZ) subnet 2 located in Availability
-      Zone 3
+    Description: The CIDR block for the public (DMZ) subnet 3 located in Availability
+      Zone 3.
     Type: String
   QSS3BucketName:
     AllowedPattern: ^[0-9a-zA-Z]+([0-9a-zA-Z-]*[0-9a-zA-Z])*$
@@ -132,7 +134,7 @@ Parameters:
       letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen
       (-).
     Default: aws-quickstart
-    Description: S3 bucket name for the Quick Start assets. This string can include
+    Description: The S3 bucket name for the Quick Start assets. This string can include
       numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start
       or end with a hyphen (-).
     Type: String
@@ -141,25 +143,25 @@ Parameters:
     ConstraintDescription: Quick Start key prefix can include numbers, lowercase letters,
       uppercase letters, hyphens (-), and forward slash (/).
     Default: quickstart-eks-portworx/
-    Description: S3 key prefix for the Quick Start assets. Quick Start key prefix
+    Description: The S3 key prefix for the Quick Start assets. Quick Start key prefix
       can include numbers, lowercase letters, uppercase letters, hyphens (-), and
       forward slash (/).
     Type: String
   RemoteAccessCIDR:
     AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/([0-9]|[1-2][0-9]|3[0-2]))$
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/x
-    Description: The CIDR IP range that is permitted to access the instances We recommend
+    Description: The CIDR IP range that is permitted to access the instances. We recommend
       that you set this value to a trusted IP range.
     Type: String
   VPCCIDR:
     AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
     Default: 10.0.0.0/16
-    Description: CIDR block for the VPC
+    Description: CIDR block for the VPC.
     Type: String
   AdditionalEKSAdminArns:
     Default: ""
-    Description: "[OPTIONAL] Comma separated list of IAM users/roles to be granted admin access to the EKS cluster"
+    Description: "[OPTIONAL] The comma-separated list of IAM users/role Amazon Resource Names (ARNs) to be granted admin access to the EKS cluster."
     Type: CommaDelimitedList
   NodeInstanceType:
     Default: t2.medium
@@ -245,23 +247,23 @@ Parameters:
     - z1d.6xlarge
     - z1d.12xlarge
     ConstraintDescription: Must be a valid EC2 instance type
-    Description: Type of EC2 instance for the Node instances
+    Description: The type of EC2 instance for the node instances
     Type: String
   NumberOfNodes:
     Default: 3
-    Description: Number of EKS node instances
+    Description: The number of Amazon EKS node instances.
     Type: Number
   NodeGroupName:
     Default: Default
-    Description: Name for EKS node group
+    Description: The name for Amazon EKS node group.
     Type: String
   NodeVolumeSize:
     Default: 20
-    Description: Size for node volumes
+    Description: The size for the node's root EBS volumes.
     Type: String
   LambdaZipsBucketName:
-    Description: 'OPTIONAL: Bucket Name where the lambda zip files should be placed,
-        if left blank a bucket will be created.'
+    Description: [OPTIONAL] The name of the bucket  where the Lambda .zip files should be placed;
+        if left blank, a bucket will be created.'
     Type: String
     Default: ''
   KubernetesVersion:
@@ -271,19 +273,19 @@ Parameters:
   PXKubernetesVersion:
     Type: String
     Default: "v1.11.0"
-    Description:  The EKS version used scheduler container image tags
+    Description:  The tag for the Portworx container image version
   PortworxVersion:
     Type: String
     Default: "2.0.1"
-    Description: Version of portworx X.Y.Z
+    Description: The version of Portworx that is deployed by this Quick Start.
   LightHouseVersion:
     Type: String
     Default: "2.0.1"
-    Description: Version of Lighthouse X.Y.Z
+    Description: The version of the Portworx Lighthouse UI.
   VolumeTemplateString:
     Type: String
     Default: "type=gp2,size=100"
-    Description: The template string (https://docs.portworx.com/cloud-references/auto-disk-provisioning/aws/)
+    Description: The template string used for partitioning. For more information, see https://docs.portworx.com/cloud-references/auto-disk-provisioning/aws/.
 Resources:
   VPCStack:
     Type: AWS::CloudFormation::Stack
