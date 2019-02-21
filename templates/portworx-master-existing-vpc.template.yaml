@@ -211,30 +211,30 @@ Parameters:
     Description: The size for the node's root EBS volumes.
     Type: String
   LambdaZipsBucketName:
-    Description: '[OPTIONAL] The name of the bucket  where the Lambda .zip files should be placed;
+    Description: '[OPTIONAL] The name of the bucket where the Lambda .zip files should be placed;
 if left blank, a bucket will be created.'
     Type: String
     Default: ''
   VPCID:
-    Description: ID of the VPC (e.g., vpc-0343606e)
+    Description: The ID of the VPC (e.g., vpc-0343606e).
     Type: "AWS::EC2::VPC::Id"
   PublicSubnet1ID:
-    Description: ID of the public subnet 1 in Availability Zone 1 (e.g., subnet-a0246dcd)
+    Description: The ID of the public subnet 1 in Availability Zone 1 (e.g., subnet-a0246dcd).
     Type: "AWS::EC2::Subnet::Id"
   PublicSubnet2ID:
-    Description: ID of the public subnet 2 in Availability Zone 1 (e.g., subnet-a0246dcd)
+    Description: The ID of the public subnet 2 in Availability Zone 1 (e.g., subnet-a0246dcd).
     Type: "AWS::EC2::Subnet::Id"
   PrivateSubnet1ID:
-    Description: ID of the private subnet 1 in Availability Zone 1 (e.g., subnet-a0246dcd)
+    Description: The ID of the private subnet 1 in Availability Zone 1 (e.g., subnet-a0246dcd).
     Type: "AWS::EC2::Subnet::Id"
   PrivateSubnet2ID:
-    Description: ID of the private subnet 2 in Availability Zone 1 (e.g., subnet-a0246dcd)
+    Description: The ID of the private subnet 2 in Availability Zone 1 (e.g., subnet-a0246dcd).
     Type: "AWS::EC2::Subnet::Id"
   PrivateSubnet3ID:
-    Description: ID of the private subnet 3 in Availability Zone 1 (e.g., subnet-a0246dcd)
+    Description: The ID of the private subnet 3 in Availability Zone 1 (e.g., subnet-a0246dcd).
     Type: "AWS::EC2::Subnet::Id"
   KubernetesVersion:
-    Description: Kubernetes Verison of EKS Cluster
+    Description: The Kubernetes version  of the Amazon EKS cluster.
     Type: String
     AllowedValues: [ "1.11", "1.10" ]
     Default: "1.11"
